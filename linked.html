@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+function LinkedList() {
+this.head = null;
+this.tail = null;
+}
+
+function Node(value, next, prev) {
+this.value = value;
+this.next = next;
+this.prev = prev;
+}
+
+//Creating Head Node;
+
+LinkedList.prototype.addToHead = function(value){
+var newNode=new Node(value,this.head,null); //creating new node
+if(this.head)
+{
+this.head.prev=newNode;
+} //If head is present add new node to head.prev
+else
+{
+this.tail=newNode;
+} //else add new node to head because no head means no node in linked list
+
+this.head = newNode; //No matter head is present or not we need to add newNode as head
+};
+
+
+var ll = new LinkedList();
+
+let list = new LinkedList();
+list.addToHead(100);
+list.addToHead(200);
+console.log(list);
+
+
+</script>
+
+</body>
+</html>
+
+
+//Creating Tail Node
+<script>
+
+LinkedList.prototype.addToTail = function(value) {
+const newNode = new Node(value, null, this.tail);
+if (this.tail) { this.tail.next = newNode;
+}
+else {
+    this.head = newNode;
+}
+this.tail = newNode;
+};
+
+let list1 = new LinkedList();
+list1.addToTail(100);
+list1.addToTail(200);
+list1.addToTail(300);
+console.log(list1);
+
+
+</script>
+
+//Removing Head Nodes
+
+<script>
+
+LinkedList.prototype.removeHead = function() {
+if (!this.head){
+    return null;
+}
+let value = this.head.value;
+this.head = this.head.next;
+
+if (this.head) {
+    this.head.prev = null;
+}
+else {
+    this.tail = null;
+}
+
+return value;
+};
+
+//Removing Tail Nodes
+
+
+
+LinkedList.prototype.removeTail = function() {
+    if (!this.tail){
+        return null;
+    }
+    let value = this.tail.value;
+    this.tail = this.tail.prev;
+
+    if (this.tail){
+        this.tail.next = null;
+    }
+    else {
+        this.head = null;
+    }
+
+    return value;
+};
+
+</script>
+
+//Searching Nodes
+
+<script>
+
+    LinkedList.prototype.search = function(searchValue) {
+        let currentNode = this.head;
+
+        while(currentNode) {
+            if (currentNode.value === searchValue) return currentNode;
+            currentNode = currentNode.next;
+        }
+        return null;
+    }
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
